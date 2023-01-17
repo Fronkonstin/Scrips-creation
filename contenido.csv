@@ -1,0 +1,74 @@
+Import-Module ActiveDirectory
+$path="ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es"
+New-ADOrganizationalUnit -name asi2aso -path "dc=asi2aso,dc=es" -ProtectedFromAccidentalDeletion $false
+New-ADOrganizationalUnit -name Direccion -path "ou=asi2aso,dc=asi2aso,dc=es" -ProtectedFromAccidentalDeletion $false
+New-ADOrganizationalUnit -name DptoAdmon -path "ou=asi2aso,dc=asi2aso,dc=es" -ProtectedFromAccidentalDeletion $false
+New-ADOrganizationalUnit -name DptoTecnico -path "ou=asi2aso,dc=asi2aso,dc=es" -ProtectedFromAccidentalDeletion $false
+New-ADOrganizationalUnit -name DptoComercial -path "ou=asi2aso,dc=asi2aso,dc=es" -ProtectedFromAccidentalDeletion $false
+New-ADOrganizationalUnit -name DptoRRHH -path "ou=asi2aso,dc=asi2aso,dc=es" -ProtectedFromAccidentalDeletion $false
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_1" -name "Cuentas"
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_1" -name "Contratos"
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_1" -name "Aplicaciones"
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_2" -name "Cuentas"
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_2" -name "Contratos"
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_2" -name "Aplicaciones"
+New-Item -ItemType Directory -path "C:\Proyectos\Proyecto_2" -name "Equipos"
+
+New-ADGroup -Name "ACL_Proyectos_ControlTotal" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Proyectos_Leer" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Proyecto1_Listar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Proyecto2_Listar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Cuentas1_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Cuentas2_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Contratos1_Leer" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Contratos2_Leer" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Contratos1_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Contratos2_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Aplicaciones1_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Aplicaciones2_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "ACL_Equipos_Modificar" -GroupCategory Security -GroupScope DomainLocal -Path $path
+New-ADGroup -Name "global_directores" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_secretarios" -GroupCategory Security -GroupScope Global -Path $path
+
+New-ADGroup -Name "global_proyecto_1" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_proyecto_2" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_coordinadores" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_tecnicos_A" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_tecnicos_B" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_tecnicos_C" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_comerciales_A" -GroupCategory Security -GroupScope Global -Path $path
+New-ADGroup -Name "global_comerciales_B" -GroupCategory Security -GroupScope Global -Path $path
+
+Add-ADGroupMember "cn=global_proyecto_1,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_directores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_1,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_secretarios,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_1,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_coordinadores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_1,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_tecnicos_A,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_1,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_comerciales_A,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_2,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_directores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_2,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_secretarios,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_2,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_coordinadores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_2,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_tecnicos_B,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_2,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_tecnicos_C,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=global_proyecto_2,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_comerciales_B,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Proyectos_ControlTotal,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_directores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Proyectos_Leer,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_secretarios,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Proyecto1_Listar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_proyecto_1,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Proyecto2_Listar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_proyecto_2,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+
+Add-ADGroupMember "cn=ACL_Cuentas1_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_coordinadores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Cuentas2_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_coordinadores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Contratos1_Leer,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_coordinadores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Contratos2_Leer,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_coordinadores,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Contratos1_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_comerciales_A,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Contratos2_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_comerciales_B,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Aplicaciones1_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_tecnicos_A,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Aplicaciones2_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_tecnicos_B,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+Add-ADGroupMember "cn=ACL_Equipos_Modificar,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=global_tecnicos_C,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+
+Import-Csv scripts\plantilla.csv | ForEach-Object {
+$nombrecompleto=$_.Nombre + " " + $_.Apellido
+New-ADUser -UserPrincipalName $_.Nombre -name $nombrecompleto -SamAccountName $_.Nombre -GivenName $_.Nombre -Surname $_.Apellido -AccountPassword (ConvertTo-SecureString -AsPlainText "contrasenaCONTRASENA2014" -Force) -path "ou=Direccion,ou=Iberica,dc=iberica,dc=es" -enabled $true
+$grupo=$_.Grupo
+Add-ADGroupMember "cn=$grupo,ou=Direccion,ou=asi2aso,dc=asi2aso,dc=es" "cn=$nombrecompleto,ou=Direccion,ou=Iberica,dc=iberica,dc=es"
+}
+
